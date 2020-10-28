@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="root" fx:id="master" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.red.app.controll.HomeController">
+   <children>
+      <MediaView fx:id="mediaView" />
+      <AnchorPane fx:id="body" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane fx:id="header" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="190.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <VBox fx:id="findBox" alignment="TOP_CENTER" prefHeight="513.0" prefWidth="353.0" styleClass="findBox">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" prefWidth="200.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="28.0">
+                                 <children>
+                                    <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/icon_search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                              <TextField fx:id="inputText" focusTraversable="false" maxHeight="1.7976931348623157E308" minWidth="300.0" onKeyReleased="#findOnReleased" promptText="Nhập tên bài hát..." styleClass="font-13" />
+                              <HBox fx:id="nodeCloseFind" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="23.0" visible="false">
+                                 <children>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/x.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <VBox fx:id="findDiv" alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="0.0" prefWidth="351.0" visible="false">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT" maxHeight="22.0" minHeight="22.0" prefHeight="22.0" prefWidth="351.0">
+                                 <children>
+                                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#findOnToggleSearch" prefHeight="22.0" prefWidth="56.0">
+                                       <children>
+                                          <Label text="Đóng" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <ScrollPane hbarPolicy="NEVER" minHeight="0.0" minWidth="-Infinity" prefWidth="351.0" visible="false">
+                                <content>
+                                  <AnchorPane />
+                                </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="10.0" />
+               </padding>
+            </HBox>
+         </children></AnchorPane>
+      <Pane fx:id="playlistNode" layoutX="341.0" layoutY="251.0" prefHeight="450.0" prefWidth="350.0" visible="false" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox prefHeight="41.0" prefWidth="350.0" style="-fx-background-radius: 10 10 0 0;" styleClass="playlistBackground">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="417.0">
+                     <children>
+                        <Label styleClass="font-14" text="Danh sách phát " textFill="WHITE">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="font-14" text="(" textFill="WHITE">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="font-14" text="0" textFill="WHITE">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                        <Label styleClass="font-14" text=")" textFill="WHITE">
+                           <font>
+                              <Font size="32.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="22.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" onMouseClicked="#onTogglePlaylist" prefHeight="41.0" prefWidth="189.0">
+                     <children>
+                        <Label prefHeight="0.0" prefWidth="11.0" styleClass="font-22" text="_" textFill="WHITE" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+               </children>
+            </HBox>
+            <ScrollPane hbarPolicy="NEVER" layoutY="42.0" prefHeight="408.0" prefWidth="350.0" styleClass="playlistBackground">
+               <content>
+                  <AnchorPane prefWidth="350.0" styleClass="transparent">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <children>
+                        <VBox fx:id="playlistContent" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </Pane>
+      <AnchorPane id="mediaControll" fx:id="footer" minHeight="-Infinity" prefHeight="70.0" prefWidth="900.0" styleClass="z-depth-1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="70.0" prefWidth="900.0" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0" spacing="20.0">
+                     <children>
+                        <ImageView fx:id="btnPrevious" fitHeight="23.0" fitWidth="23.0" onMouseClicked="#onClickPrevious" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/pre.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="btnPlay" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onClickButtonPlay" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/btn_play.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="btnNext" fitHeight="23.0" fitWidth="23.0" onMouseClicked="#onClickNext" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/next.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0" spacing="15.0">
+                     <children>
+                        <ImageView fx:id="thumb" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="70.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="58.0" prefWidth="406.0" spacing="5.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="17.0" prefWidth="412.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="17.0" prefWidth="538.0" spacing="6.0">
+                                             <children>
+                                                <Label fx:id="songName" alignment="CENTER_RIGHT" styleClass="font-12" text="..." textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="18.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label styleClass="font-12" text="-" textFill="#c9c9c9">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="artists" styleClass="font-12" text="..." textFill="#c9c9c9">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="17.0" prefWidth="160.0">
+                                             <children>
+                                                <Label fx:id="playTime" alignment="CENTER_RIGHT" styleClass="font-10" text="00:00" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label styleClass="font-10" text="/" textFill="#c9c9c9">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="10.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets right="0.5" />
+                                                   </padding>
+                                                </Label>
+                                                <Label fx:id="songTime" styleClass="font-10" text="00:00" textFill="#c9c9c9">
+                                                   <font>
+                                                      <Font name="Segoe UI Semibold" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <Slider fx:id="timeSlider" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="8.0" prefWidth="533.0">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Slider>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0" spacing="17.0">
+                     <children>
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="23.0" prefWidth="23.0">
+                           <children>
+                              <ImageView fx:id="iconVolume" fitHeight="23.0" fitWidth="23.0" onMouseEntered="#onShowVolume" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/volume.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <Pane fx:id="paneVolume" layoutX="-5.0" layoutY="-199.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#onShowVolume" onMouseExited="#onHidenVolume" prefHeight="222.0" prefWidth="34.0" visible="false">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#500961" height="175.0" stroke="#6c0779" strokeType="INSIDE" width="34.0" />
+                                    <VBox alignment="CENTER" prefHeight="175.0" prefWidth="34.0">
+                                       <children>
+                                          <Label text="100" textFill="WHITE" />
+                                          <Slider fx:id="volumeSlider" orientation="VERTICAL" prefHeight="145.0" prefWidth="19.0" value="100.0" />
+                                          <Label text="0" textFill="WHITE" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </Pane>
+                        <Pane maxHeight="-Infinity" prefHeight="35.0" prefWidth="168.0" style="-fx-background-radius: 6; -fx-background-color: rgb(255,255,255,0.17);">
+                           <children>
+                              <HBox alignment="CENTER" onMouseClicked="#onTogglePlaylist" prefHeight="35.0" prefWidth="168.0">
+                                 <children>
+                                    <Label text="Danh sách phát " textFill="WHITE" />
+                                    <Label text="(" textFill="WHITE" />
+                                    <Label text="0" textFill="WHITE" />
+                                    <Label text=")" textFill="WHITE" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </Pane>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+         </children></AnchorPane>
+      <AnchorPane id="nodeLoad" fx:id="nodeLoad" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ProgressIndicator maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" />
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
